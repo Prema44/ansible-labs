@@ -18,7 +18,5 @@ CREATE TABLE employees (
 INSERT INTO employees (name, position) VALUES ('John Doe', 'Software Engineer');
 INSERT INTO employees (name, position) VALUES ('Jane Smith', 'Project Manager');
 
-/root/env/bin/python3.12 -m pip install flask
-/root/env/bin/python3.12 -m pip install Flask-MySQLdb
-
-/root/env/bin/python3.12 app.py
+python3 -m pip install flask Flask-MySQLdb
+python3 app.py
