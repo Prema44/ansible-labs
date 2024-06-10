@@ -1,0 +1,24 @@
+apt-get install -y mysql-server mysql-client
+service mysql start
+
+mysql -u root -p
+
+CREATE USER 'db_user'@'%' IDENTIFIED BY 'Passw0rd';
+GRANT ALL PRIVILEGES ON *.* TO 'db_user'@'%' WITH GRANT OPTION;
+CREATE DATABASE employee_db;
+
+USE employee_db;
+
+CREATE TABLE employees (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    position VARCHAR(255) NOT NULL
+);
+
+INSERT INTO employees (name, position) VALUES ('John Doe', 'Software Engineer');
+INSERT INTO employees (name, position) VALUES ('Jane Smith', 'Project Manager');
+
+/root/env/bin/python3.12 -m pip install flask
+/root/env/bin/python3.12 -m pip install Flask-MySQLdb
+
+/root/env/bin/python3.12 app.py
