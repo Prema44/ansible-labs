@@ -1,0 +1,54 @@
+- name: Deploy a web application
+  hosts: db_and_webserver1
+  tasks:
+    - name: Install mysql server and client
+      apt:
+        name: '{{item}}'
+        state: present
+      with_items:
+        - mysql-server
+        - mysql-client
+    - name: Install PyMysql as a dependency to use mysql module
+      pip:
+        name: pymysql
+        state: present
+    - name: Start Mysql service #service module didnt work
+      command: service mysql start
+    - name: Create database user
+      mysql_user:
+        name: db_user
+        password: Passw0rd
+        priv: '*.*:ALL' #syntax: database.table:ACTIONS
+        state: present
+        host: '%' #defines from which host this user would be allowed to access the mysql server. % means any host
+        login_unix_socket: /run/mysqld/mysqld.sock #this was needed as thats the only way to connect to mysql server frshly setup. 
+        check_implicit_admin: yes #checks if mysql allows root/nopassword login else login_user and login_password can be user if not.
+    - name: Create application database
+      mysql_db:
+        name: employee_db
+        check_implicit_admin: true
+        login_user: db_user
+        login_password: Passw0rd
+        state: present
+    - name: Execute queries to create tabel and run queries
+      mysql_query:
+        login_db: employee_db
+        query:
+          - CREATE TABLE employees (id INT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(255) NOT NULL,position VARCHAR(255) NOT NULL);
+          - INSERT INTO employees (name, position) VALUES ('John Doe', 'Software Engineer');
+          - INSERT INTO employees (name, position) VALUES ('Jane Smith', 'Project Manager');
+        login_user: db_user
+        login_password: Passw0rd
+    - name: Install Flask dependecny
+      pip:
+        name: '{{item}}'
+        state: present
+      with_items:
+        - flask
+        - Flask-MySQLdb
+    - name: Copy source code
+      copy:
+        src: app.py
+        dest: /opt/app.py
+    - name: Start Webserver
+      shell: nohup python3 /opt/app.py &  
