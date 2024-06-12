@@ -26,3 +26,16 @@ python3 app.py
 
 Use 
 ansible-galaxy init <role_name>: To create the folder structure for role in the current directory.
+
+To share this role to ansible galaxy community,
+1. create ur account on galaxy. Galaxy uses authentication of github and hence has access to your repo during authorization.
+2. Create a public repo with name ansible-role-<role_name>
+3. Push the file structure there on github
+4. go to galaxy and choose Import Roles From Github Repo.
+5. Provide the repo name
+6. Choose import
+7. You would see your role in your galaxy account.
+8. Use command ansible-galaxy install Prema44.mysql where Prema44 is the namespace and mysql in the role name. It also has versioning feature.
+
+To search for role in galaxy: ansible-galaxy search mysql
+
