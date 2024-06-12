@@ -1,0 +1,43 @@
+---
+- name: Install mysql server and client
+  apt:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - mysql-server
+    - mysql-client
+- name: Install PyMysql as a dependency to use mysql module
+  pip:
+    name: pymysql
+    state: present
+- name: Start Mysql service
+  command: service mysql start
+- name: Create database user
+  mysql_user:
+    name: "{{db_user}}"
+    password: "{{db_password}}"
+    priv: "*.*:ALL"
+    state: present
+    host: "%"
+    login_unix_socket: /run/mysqld/mysqld.sock
+    check_implicit_admin: yes
+- name: Create application database
+  mysql_db:
+    name: "{{db_name}}"
+    check_implicit_admin: true
+    login_user: "{{db_user}}"
+    login_password: "{{db_password}}"
+    state: present
+- name: Execute queries to create tabel and run queries
+  mysql_query:
+    login_db: "{{db_name}}"
+    query:
+      - CREATE TABLE employees (id INT AUTO_INCREMENT PRIMARY KEY,name
+        VARCHAR(255) NOT NULL,position VARCHAR(255) NOT NULL);
+      - INSERT INTO employees (name, position) VALUES ('John Doe', 'Software
+        Engineer');
+      - INSERT INTO employees (name, position) VALUES ('Jane Smith', 'Project
+        Manager');
+    login_user: "{{db_user}}"
+    login_password: "{{db_password}}"
+
