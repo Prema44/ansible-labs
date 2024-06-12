@@ -20,3 +20,9 @@ INSERT INTO employees (name, position) VALUES ('Jane Smith', 'Project Manager');
 
 python3 -m pip install flask Flask-MySQLdb
 python3 app.py
+
+#########################################################################################
+
+
+Use 
+ansible-galaxy init <role_name>: To create the folder structure for role in the current directory.

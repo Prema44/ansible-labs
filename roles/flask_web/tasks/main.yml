@@ -1,0 +1,15 @@
+---
+- name: Install Flask dependecny
+  pip:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - flask
+    - Flask-MySQLdb
+- name: Copy source code
+  copy:
+    src: app.py
+    dest: /opt/app.py
+- name: Start Webserver
+  shell: nohup python3 /opt/app.py &
+
