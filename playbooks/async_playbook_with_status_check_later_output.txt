@@ -1,0 +1,254 @@
+PLAY [async testing] ****************************************************************************************************************************
+
+TASK [Gathering Facts] **************************************************************************************************************************
+ok: [db_and_webserver1]
+ok: [db_and_webserver2]
+
+TASK [Sleep 30] *********************************************************************************************************************************
+changed: [db_and_webserver1] => {"ansible_job_id": "12972778747.3170", "changed": true, "finished": 0, "results_file": "/root/.ansible_async/12972778747.3170", "started": 1}
+changed: [db_and_webserver2] => {"ansible_job_id": "225482630961.3171", "changed": true, "finished": 0, "results_file": "/root/.ansible_async/225482630961.3171", "started": 1}
+
+TASK [check result] *****************************************************************************************************************************
+ok: [db_and_webserver1] => {
+    "sleep_result": {
+        "ansible_job_id": "12972778747.3170",
+        "changed": true,
+        "failed": false,
+        "finished": 0,
+        "results_file": "/root/.ansible_async/12972778747.3170",
+        "started": 1
+    }
+}
+ok: [db_and_webserver2] => {
+    "sleep_result": {
+        "ansible_job_id": "225482630961.3171",
+        "changed": true,
+        "failed": false,
+        "finished": 0,
+        "results_file": "/root/.ansible_async/225482630961.3171",
+        "started": 1
+    }
+}
+
+TASK [sleep 30 once again] **********************************************************************************************************************
+changed: [db_and_webserver1] => {"ansible_job_id": "785263406420.3194", "changed": true, "finished": 0, "results_file": "/root/.ansible_async/785263406420.3194", "started": 1}
+changed: [db_and_webserver2] => {"ansible_job_id": "65836686578.3195", "changed": true, "finished": 0, "results_file": "/root/.ansible_async/65836686578.3195", "started": 1}
+
+TASK [check status of task1] ********************************************************************************************************************
+FAILED - RETRYING: check status of task1 (6 retries left).
+FAILED - RETRYING: check status of task1 (6 retries left).
+FAILED - RETRYING: check status of task1 (5 retries left).
+FAILED - RETRYING: check status of task1 (5 retries left).
+FAILED - RETRYING: check status of task1 (4 retries left).
+FAILED - RETRYING: check status of task1 (4 retries left).
+FAILED - RETRYING: check status of task1 (3 retries left).
+FAILED - RETRYING: check status of task1 (3 retries left).
+FAILED - RETRYING: check status of task1 (2 retries left).
+FAILED - RETRYING: check status of task1 (2 retries left).
+FAILED - RETRYING: check status of task1 (1 retries left).
+FAILED - RETRYING: check status of task1 (1 retries left).
+changed: [db_and_webserver2] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '225482630961.3171', 'results_file': '/root/.ansible_async/225482630961.3171', 'changed': True, 'failed': False}) => {"ansible_job_id": "225482630961.3171", "ansible_loop_var": "item", "attempts": 7, "changed": true, "cmd": ["sleep", "30"], "delta": "0:00:30.003363", "end": "2024-06-13 10:49:12.967356", "finished": 1, "item": {"ansible_job_id": "225482630961.3171", "changed": true, "failed": false, "finished": 0, "results_file": "/root/.ansible_async/225482630961.3171", "started": 1}, "msg": "", "rc": 0, "start": "2024-06-13 10:48:42.963993", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+changed: [db_and_webserver1] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '12972778747.3170', 'results_file': '/root/.ansible_async/12972778747.3170', 'changed': True, 'failed': False}) => {"ansible_job_id": "12972778747.3170", "ansible_loop_var": "item", "attempts": 7, "changed": true, "cmd": ["sleep", "30"], "delta": "0:00:30.003264", "end": "2024-06-13 10:49:12.958815", "finished": 1, "item": {"ansible_job_id": "12972778747.3170", "changed": true, "failed": false, "finished": 0, "results_file": "/root/.ansible_async/12972778747.3170", "started": 1}, "msg": "", "rc": 0, "start": "2024-06-13 10:48:42.955551", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+changed: [db_and_webserver2] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '65836686578.3195', 'results_file': '/root/.ansible_async/65836686578.3195', 'changed': True, 'failed': False}) => {"ansible_job_id": "65836686578.3195", "ansible_loop_var": "item", "attempts": 1, "changed": true, "cmd": ["sleep", "30"], "delta": "0:00:30.003296", "end": "2024-06-13 10:49:13.551411", "finished": 1, "item": {"ansible_job_id": "65836686578.3195", "changed": true, "failed": false, "finished": 0, "results_file": "/root/.ansible_async/65836686578.3195", "started": 1}, "msg": "", "rc": 0, "start": "2024-06-13 10:48:43.548115", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+changed: [db_and_webserver1] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '785263406420.3194', 'results_file': '/root/.ansible_async/785263406420.3194', 'changed': True, 'failed': False}) => {"ansible_job_id": "785263406420.3194", "ansible_loop_var": "item", "attempts": 1, "changed": true, "cmd": ["sleep", "30"], "delta": "0:00:31.007556", "end": "2024-06-13 10:49:14.527788", "finished": 1, "item": {"ansible_job_id": "785263406420.3194", "changed": true, "failed": false, "finished": 0, "results_file": "/root/.ansible_async/785263406420.3194", "started": 1}, "msg": "", "rc": 0, "start": "2024-06-13 10:48:43.520232", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+
+TASK [check job result] *************************************************************************************************************************
+ok: [db_and_webserver1] => {
+    "job_result": {
+        "changed": true,
+        "msg": "All items completed",
+        "results": [
+            {
+                "ansible_job_id": "12972778747.3170",
+                "ansible_loop_var": "item",
+                "attempts": 7,
+                "changed": true,
+                "cmd": [
+                    "sleep",
+                    "30"
+                ],
+                "delta": "0:00:30.003264",
+                "end": "2024-06-13 10:49:12.958815",
+                "failed": false,
+                "finished": 1,
+                "invocation": {
+                    "module_args": {
+                        "_raw_params": "sleep 30",
+                        "_uses_shell": false,
+                        "argv": null,
+                        "chdir": null,
+                        "creates": null,
+                        "executable": null,
+                        "removes": null,
+                        "stdin": null,
+                        "stdin_add_newline": true,
+                        "strip_empty_ends": true,
+                        "warn": false
+                    }
+                },
+                "item": {
+                    "ansible_job_id": "12972778747.3170",
+                    "changed": true,
+                    "failed": false,
+                    "finished": 0,
+                    "results_file": "/root/.ansible_async/12972778747.3170",
+                    "started": 1
+                },
+                "msg": "",
+                "rc": 0,
+                "start": "2024-06-13 10:48:42.955551",
+                "stderr": "",
+                "stderr_lines": [],
+                "stdout": "",
+                "stdout_lines": []
+            },
+            {
+                "ansible_job_id": "785263406420.3194",
+                "ansible_loop_var": "item",
+                "attempts": 1,
+                "changed": true,
+                "cmd": [
+                    "sleep",
+                    "30"
+                ],
+                "delta": "0:00:31.007556",
+                "end": "2024-06-13 10:49:14.527788",
+                "failed": false,
+                "finished": 1,
+                "invocation": {
+                    "module_args": {
+                        "_raw_params": "sleep 30",
+                        "_uses_shell": false,
+                        "argv": null,
+                        "chdir": null,
+                        "creates": null,
+                        "executable": null,
+                        "removes": null,
+                        "stdin": null,
+                        "stdin_add_newline": true,
+                        "strip_empty_ends": true,
+                        "warn": false
+                    }
+                },
+                "item": {
+                    "ansible_job_id": "785263406420.3194",
+                    "changed": true,
+                    "failed": false,
+                    "finished": 0,
+                    "results_file": "/root/.ansible_async/785263406420.3194",
+                    "started": 1
+                },
+                "msg": "",
+                "rc": 0,
+                "start": "2024-06-13 10:48:43.520232",
+                "stderr": "",
+                "stderr_lines": [],
+                "stdout": "",
+                "stdout_lines": []
+            }
+        ],
+        "skipped": false
+    }
+}
+ok: [db_and_webserver2] => {
+    "job_result": {
+        "changed": true,
+        "msg": "All items completed",
+        "results": [
+            {
+                "ansible_job_id": "225482630961.3171",
+                "ansible_loop_var": "item",
+                "attempts": 7,
+                "changed": true,
+                "cmd": [
+                    "sleep",
+                    "30"
+                ],
+                "delta": "0:00:30.003363",
+                "end": "2024-06-13 10:49:12.967356",
+                "failed": false,
+                "finished": 1,
+                "invocation": {
+                    "module_args": {
+                        "_raw_params": "sleep 30",
+                        "_uses_shell": false,
+                        "argv": null,
+                        "chdir": null,
+                        "creates": null,
+                        "executable": null,
+                        "removes": null,
+                        "stdin": null,
+                        "stdin_add_newline": true,
+                        "strip_empty_ends": true,
+                        "warn": false
+                    }
+                },
+                "item": {
+                    "ansible_job_id": "225482630961.3171",
+                    "changed": true,
+                    "failed": false,
+                    "finished": 0,
+                    "results_file": "/root/.ansible_async/225482630961.3171",
+                    "started": 1
+                },
+                "msg": "",
+                "rc": 0,
+                "start": "2024-06-13 10:48:42.963993",
+                "stderr": "",
+                "stderr_lines": [],
+                "stdout": "",
+                "stdout_lines": []
+            },
+            {
+                "ansible_job_id": "65836686578.3195",
+                "ansible_loop_var": "item",
+                "attempts": 1,
+                "changed": true,
+                "cmd": [
+                    "sleep",
+                    "30"
+                ],
+                "delta": "0:00:30.003296",
+                "end": "2024-06-13 10:49:13.551411",
+                "failed": false,
+                "finished": 1,
+                "invocation": {
+                    "module_args": {
+                        "_raw_params": "sleep 30",
+                        "_uses_shell": false,
+                        "argv": null,
+                        "chdir": null,
+                        "creates": null,
+                        "executable": null,
+                        "removes": null,
+                        "stdin": null,
+                        "stdin_add_newline": true,
+                        "strip_empty_ends": true,
+                        "warn": false
+                    }
+                },
+                "item": {
+                    "ansible_job_id": "65836686578.3195",
+                    "changed": true,
+                    "failed": false,
+                    "finished": 0,
+                    "results_file": "/root/.ansible_async/65836686578.3195",
+                    "started": 1
+                },
+                "msg": "",
+                "rc": 0,
+                "start": "2024-06-13 10:48:43.548115",
+                "stderr": "",
+                "stderr_lines": [],
+                "stdout": "",
+                "stdout_lines": []
+            }
+        ],
+        "skipped": false
+    }
+}
+
+PLAY RECAP **************************************************************************************************************************************
+db_and_webserver1          : ok=6    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+db_and_webserver2          : ok=6    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+

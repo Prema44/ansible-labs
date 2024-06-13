@@ -1,0 +1,19 @@
+PLAY [async testing] ****************************************************************************************************************************
+
+TASK [Gathering Facts] **************************************************************************************************************************
+ok: [db_and_webserver1]
+ok: [db_and_webserver2]
+
+TASK [Sleep 60] *********************************************************************************************************************************
+ASYNC POLL on db_and_webserver2: jid=108826741602.1894 started=1 finished=0
+ASYNC POLL on db_and_webserver1: jid=788971971550.1893 started=1 finished=0
+ASYNC POLL on db_and_webserver2: jid=108826741602.1894 started=1 finished=0
+ASYNC POLL on db_and_webserver1: jid=788971971550.1893 started=1 finished=0
+ASYNC POLL on db_and_webserver2: jid=108826741602.1894 started=1 finished=0
+fatal: [db_and_webserver2]: FAILED! => {"changed": false, "msg": "async task did not complete within the requested time - 30s"}
+ASYNC POLL on db_and_webserver1: jid=788971971550.1893 started=1 finished=0
+fatal: [db_and_webserver1]: FAILED! => {"changed": false, "msg": "async task did not complete within the requested time - 30s"}
+
+PLAY RECAP **************************************************************************************************************************************
+db_and_webserver1          : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+db_and_webserver2          : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0

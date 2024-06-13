@@ -1,0 +1,31 @@
+- name: async testing
+  hosts: db_and_webservers
+  tasks:
+    - name: Sleep 30
+      command: sleep 30
+      async: 20
+      poll: 0
+      register: sleep_result
+    - name: check result
+      debug:
+        var: sleep_result
+    - name: sleep 30 once again
+      command: sleep 30
+      async: 35
+      poll: 0
+      register: sleep_result2
+    - name: check status of task1
+      async_status: 
+        jid: '{{item.ansible_job_id}}'
+      register: job_result
+      until: job_result.finished
+      retries: 6
+      delay: 5
+      with_items:
+        - '{{sleep_result}}'
+        - '{{sleep_result2}}'
+    - name: check job result
+      debug:
+        var: job_result
+
+

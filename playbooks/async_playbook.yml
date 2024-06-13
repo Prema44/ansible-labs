@@ -1,0 +1,8 @@
+- name: async testing
+  hosts: db_and_webservers
+  tasks:
+    - name: Sleep 60
+      command: sleep 60
+      async: 30
+      poll: 10
+
